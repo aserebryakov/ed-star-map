@@ -16,7 +16,7 @@ var example = (function() {
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		document.getElementById("wgl-container").appendChild( renderer.domElement );
 		//controls.update() must be called after any manual changes to the camera's transform
-		camera.position.set( 0, 100, 0 );
+		camera.position.set( 0, 500, 0 );
 		controls.update();
 		scene.add(camera);
 		scene.add(light);
@@ -39,7 +39,7 @@ var example = (function() {
 
 		function addVerticle(obj) {
 			var star = new THREE.Vector3();
-			star.x = obj.x;
+			star.x = -obj.x;
 			star.y = obj.y;
 			star.z = obj.z;
 
