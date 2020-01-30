@@ -1,19 +1,3 @@
-function NamedPoint(name, x, y, z) {
-	this.x = x
-	this.y = y
-	this.z = z
-	this.name = name
-}
-
-function coordinatesList() {
-	var array = [
-		new NamedPoint("p1", 10, 0, 0),
-		new NamedPoint("p2", -10, 0, 0)
-	]
-
-	return array;
-}
-
 var example = (function() {
 	"use strict";
 	var scene = new THREE.Scene();
@@ -30,7 +14,7 @@ var example = (function() {
 		scene.add(camera);
 		scene.add(light);
 		read_data();
-		coordinates.forEach(initBox);
+		coordinates.data.forEach(initBox);
 		render();
 	}
 
@@ -41,7 +25,6 @@ var example = (function() {
 		);
 
 		box.name = object.name;
-		//box.position.set(new THREE.Vector3(object.x, object.y, object.z));
 		box.position.x = object.x;
 		box.position.y = object.y;
 		box.position.z = object.z;
@@ -56,7 +39,7 @@ var example = (function() {
 	}
 
 	function read_data() {
-		coordinates = coordinatesList();
+		coordinates = data;
 	}
 
 	window.onload = initScene
