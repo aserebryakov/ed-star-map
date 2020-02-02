@@ -16,7 +16,7 @@ var example = (function() {
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		document.getElementById("wgl-container").appendChild( renderer.domElement );
 		//controls.update() must be called after any manual changes to the camera's transform
-		camera.position.set( 0, 500, 0 );
+		camera.position.set(-400, 100, -500);
 		controls.update();
 		scene.add(camera);
 		scene.add(light);
@@ -26,7 +26,7 @@ var example = (function() {
 		//coordinates.data.forEach(initBox);
 
 		var box = new THREE.Mesh(
-			new THREE.SphereGeometry(2),
+			new THREE.SphereGeometry(3),
 			new THREE.MeshBasicMaterial({color : 0xFF0000})
 		);
 		scene.add(box);
@@ -48,7 +48,7 @@ var example = (function() {
 
 		coordinates.forEach(addVerticle);
 
-		var material = new THREE.PointsMaterial( {color : 0x888888} );
+		var material = new THREE.PointsMaterial( {color : 0xFFFF10} );
 
 		var stars = new THREE.Points( geometry, material );
 		scene.add( stars );
