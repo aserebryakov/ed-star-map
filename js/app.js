@@ -4,7 +4,7 @@ import { OrbitControls } from '../three.js/examples/jsm/controls/OrbitControls.j
 var example = (function() {
 	"use strict";
 	var scene = new THREE.Scene();
-	var camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 60000);
+	var camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 250000);
 	var light = new THREE.AmbientLight(0xFFFFFF);
 	var renderer = new THREE.WebGLRenderer();
 	var box;
