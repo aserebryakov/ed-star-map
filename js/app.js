@@ -33,7 +33,7 @@ var example = (function() {
 
 		var galaxy_map = new THREE.PlaneGeometry( 89700, 89700, 1, 1 );
 		var texture = new THREE.TextureLoader().load( '../textures/galactic_map.png' );
-		var material = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide, transparent: true, opacity: 0.7} );
+		var material = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide, transparent: true, opacity: 0.4} );
 		//25.21875 / -20.90625 / 25899.96875
 
 		// Initialize galaxy map
