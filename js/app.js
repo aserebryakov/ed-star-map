@@ -31,11 +31,26 @@ var example = (function() {
 		);
 		scene.add(box);
 
+		var galaxy_map = new THREE.PlaneGeometry( 89700, 89700, 1, 1 );
+		var texture = new THREE.TextureLoader().load( '../textures/galactic_map.png' );
+		var material = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide, transparent: true, opacity: 0.7} );
+		//25.21875 / -20.90625 / 25899.96875
+
+		// Initialize galaxy map
+		var plane = new THREE.Mesh( galaxy_map, material );
+		plane.position.x = 25.21875;
+		plane.position.y = -20.90625;
+		plane.position.z = 25899.96875;
+		plane.rotation.x = 1.5707963267948966192313216916398;
+		plane.rotation.y = 2*1.5707963267948966192313216916398;
+		scene.add( plane );
+
 		render();
 	}
 
 	function initStars(coordinates) {
-		var geometry = new THREE.Geometry();
+		var upper = new THREE.Geometry();
+		var lower = new THREE.Geometry();
 
 		function addVerticle(obj) {
 			var star = new THREE.Vector3();
@@ -43,15 +58,20 @@ var example = (function() {
 			star.y = obj.y;
 			star.z = obj.z;
 
-			geometry.vertices.push( star );
+			if (star.y > 0)
+				upper.vertices.push( star );
+			else
+				lower.vertices.push( star );
 		}
 
 		coordinates.forEach(addVerticle);
 
 		var material = new THREE.PointsMaterial( {color : 0xFFFF10} );
 
-		var stars = new THREE.Points( geometry, material );
-		scene.add( stars );
+		var up_stars = new THREE.Points( upper, material );
+		scene.add( up_stars );
+		var down_stars = new THREE.Points( lower, material );
+		scene.add( down_stars );
 	}
 
 	function render() {
