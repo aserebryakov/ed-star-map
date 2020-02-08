@@ -15,7 +15,6 @@ var example = (function() {
 	function initScene() {
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		document.getElementById("wgl-container").appendChild( renderer.domElement );
-		//controls.update() must be called after any manual changes to the camera's transform
 		camera.position.set(-400, 100, -500);
 		controls.update();
 		scene.add(camera);
@@ -23,7 +22,6 @@ var example = (function() {
 		read_data();
 
 		initStars(coordinates.data);
-		//coordinates.data.forEach(initBox);
 
 		var box = new THREE.Mesh(
 			new THREE.SphereGeometry(3),
@@ -32,7 +30,7 @@ var example = (function() {
 		scene.add(box);
 
 		var galaxy_map = new THREE.PlaneGeometry( 89700, 89700, 1, 1 );
-		var texture = new THREE.TextureLoader().load( '../textures/galactic_map.png' );
+		var texture = new THREE.TextureLoader().load( '/textures/galactic_map.png' );
 		var material = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide, transparent: true, opacity: 0.4} );
 		//25.21875 / -20.90625 / 25899.96875
 
