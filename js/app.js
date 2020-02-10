@@ -15,7 +15,6 @@ var example = (function() {
 	function initScene() {
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		document.getElementById("wgl-container").appendChild( renderer.domElement );
-		//controls.update() must be called after any manual changes to the camera's transform
 		camera.position.set(-400, 100, -500);
 		controls.update();
 		scene.add(camera);
