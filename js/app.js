@@ -50,8 +50,7 @@ var example = (function() {
 	}
 
 	function initStars(coordinates) {
-		var upper = new THREE.Geometry();
-		var lower = new THREE.Geometry();
+		var starsGeometry = new THREE.Geometry();
 
 		function addVerticle(obj) {
 			var star = new THREE.Vector3();
@@ -59,20 +58,15 @@ var example = (function() {
 			star.y = obj.y;
 			star.z = obj.z;
 
-			if (star.y > 0)
-				upper.vertices.push( star );
-			else
-				lower.vertices.push( star );
+			starsGeometry.vertices.push( star );
 		}
 
 		coordinates.forEach(addVerticle);
 
 		var material = new THREE.PointsMaterial( {color : 0xFFFF10} );
 
-		var up_stars = new THREE.Points( upper, material );
-		scene.add( up_stars );
-		var down_stars = new THREE.Points( lower, material );
-		scene.add( down_stars );
+		var stars = new THREE.Points( starsGeometry, material );
+		scene.add(stars);
 	}
 
 	function render() {
