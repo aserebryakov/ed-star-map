@@ -23,29 +23,31 @@ var example = (function() {
 		read_data();
 
 		initStars(coordinates.data);
-		//coordinates.data.forEach(initBox);
 
 		var box = new THREE.Mesh(
 			new THREE.SphereGeometry(3),
 			new THREE.MeshBasicMaterial({color : 0xFF0000})
 		);
 		scene.add(box);
+		initGalaxyMap(scene);
 
-		var galaxy_map = new THREE.PlaneGeometry( 89700, 89700, 1, 1 );
-		var texture = new THREE.TextureLoader().load( '../textures/galactic_map.png' );
+		render();
+	}
+
+	function initGalaxyMap(scene) {
+		var galaxy_map = new THREE.PlaneGeometry( 87000, 87000, 1, 1 );
+		var texture = new THREE.TextureLoader().load( '/ed-star-map/textures/galactic_map.jpg' );
 		var material = new THREE.MeshBasicMaterial( { map: texture, side: THREE.DoubleSide, transparent: true, opacity: 0.4} );
-		//25.21875 / -20.90625 / 25899.96875
 
-		// Initialize galaxy map
+		// I little bit missed the actual position on map texture so I use coordinates offset.
+		// 25.21875 / -20.90625 / 25899.96875 - center position
 		var plane = new THREE.Mesh( galaxy_map, material );
-		plane.position.x = 25.21875;
+		plane.position.x = 250;
 		plane.position.y = -20.90625;
 		plane.position.z = 25899.96875;
 		plane.rotation.x = 1.5707963267948966192313216916398;
 		plane.rotation.y = 2*1.5707963267948966192313216916398;
 		scene.add( plane );
-
-		render();
 	}
 
 	function initStars(coordinates) {
