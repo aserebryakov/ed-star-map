@@ -45,8 +45,8 @@ var example = (function() {
 		plane.position.x = 250;
 		plane.position.y = -20.90625;
 		plane.position.z = 25899.96875;
-		plane.rotation.x = 1.5707963267948966192313216916398;
-		plane.rotation.y = 2*1.5707963267948966192313216916398;
+		plane.rotation.x = 1.5707963267948966192313216916398; // PI/2
+		plane.rotation.y = 2*1.5707963267948966192313216916398; // PI
 		scene.add( plane );
 	}
 
@@ -79,10 +79,6 @@ var example = (function() {
 	function render() {
 		requestAnimationFrame(render);
 		controls.update();
-//		rotation += 0.001;
-//		camera.position.x = 1000 * Math.cos(rotation);
-//		camera.position.z = 1000 * Math.sin(rotation);
-//		camera.lookAt( new THREE.Vector3(0, 0, 0));
 		renderer.render(scene, camera);
 	}
 
