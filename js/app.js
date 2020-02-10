@@ -1,5 +1,6 @@
 import * as THREE from '../three.js/build/three.module.js';
 import { OrbitControls } from '../three.js/examples/jsm/controls/OrbitControls.js';
+import { STLExporter } from '../three.js/examples/jsm/exporters/STLExporter.js';
 
 var example = (function() {
 	"use strict";
@@ -80,6 +81,32 @@ var example = (function() {
 	}
 
 	window.onload = initScene
+
+	// Exporting
+	
+	var buttonExportBinary = document.getElementById('exportBinary');
+	buttonExportBinary.addEventListener('click', exportBinary);
+
+	function exportBinary(mesh) {
+		var exporter = new STLExporter();
+		var result = exporter.parse(mesh, {binary: true});
+		saveArrayBuffer(result, 'stars.stl');
+	}
+
+	function saveArrayBuffer( buffer, filename ) {
+		save( new Blob( [ buffer ], { type: 'application/octet-stream' } ), filename );
+	}
+
+	var link = document.createElement( 'a' );
+	link.style.display = 'none';
+	document.body.appendChild( link );
+
+	function save( blob, filename ) {
+		link.href = URL.createObjectURL( blob );
+		link.download = filename;
+		link.click();
+
+	}
 
 	return {
 		scene : scene
